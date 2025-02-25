@@ -6,7 +6,7 @@ import pandas as pd
 import time
 
 # Set the path to the Edge WebDriver
-edge_driver_path = r'C:\Users\Hamada Salim Trd\OneDrive\Desktop\Pharmecy Data scap by abdullah\msedgedriver.exe'  # Update this path
+edge_driver_path = r'C:\Users\Dell\Downloads\msedgedriver.exe'  # Update path here
 
 # Set up Edge options
 edge_options = Options()
@@ -32,7 +32,7 @@ row_count = 0  # Counter for rows collected
 # Loop to handle pagination
 while True:
     print("Collecting data from the current page...")
-    
+
     # Find the table
     try:
         table = driver.find_element(By.ID, 'gridData')
@@ -56,7 +56,7 @@ while True:
             # Save to Excel every 100 rows
             if row_count % 100 == 0:
                 df = pd.DataFrame(all_data, columns=headers)
-                output_file_path = r'C:\Users\Hamada Salim Trd\OneDrive\Desktop\Pharmecy Data scap by abdullah\dgda_allopathic_products.xlsx'
+                output_file_path = r'C:\Users\Dell\Downloads\dgda_allopathic_products.xlsx'  # Output path
                 df.to_excel(output_file_path, index=False)
                 print(f"Saved {row_count} rows to Excel.")
 
@@ -81,7 +81,7 @@ if all_data:
 
     # Save the DataFrame to an Excel file if there are remaining rows
     if row_count % 100 != 0:  # Save if there are leftover rows
-        output_file_path = r'C:\Users\Hamada Salim Trd\OneDrive\Desktop\Pharmecy Data scap by abdullah\dgda_allopathic_products.xlsx'
+        output_file_path = r'C:\Users\Dell\Downloads\dgda_allopathic_products.xlsx'  # Output path
         df.to_excel(output_file_path, index=False)
         print(f"Saved remaining {row_count} rows to Excel.")
 
@@ -92,4 +92,3 @@ else:
     print("No data collected.")
 
 # Close the driver
-driver.quit()
